@@ -1,0 +1,123 @@
+/*
+https://www.facebook.com/bittu.kumar.750983
+Bittu Kumar
+IIT Indore , Computer Science
+Use it as you want, just leave my name here :)
+*/
+
+// Program to implement binary tree and it's various traversals.
+
+#include<iostream>
+
+//std::ios_base::sync_with_stdio(false);
+using namespace std;
+
+#define M 2  //For Binary tree
+//For M-nary tree change value of M, and insert_node function.
+
+struct node     //Basic structure to be used
+{
+    int data;
+    struct node* next[M];
+};
+
+struct node* insert_node(struct node* head, int data);
+void Preorder_traverse(struct node* head);
+void Postorder_traverse(struct node* head);
+void Inorder_traverse(struct node* head);
+int print();
+
+int main()
+{
+    cout<<"\nFor M-nary tree change value of M and insert_node function in source code.";
+    struct node* head = NULL;
+    int choice = print();
+    while(choice)
+    {
+        switch (choice)
+        {
+            case 1 :{
+                cout<<"\nEnter the digit: ";
+                int temp;
+                cin>>temp;
+                head = insert_node(head, temp);
+                break;
+            }
+            case 2 :{
+                cout<<"\nPreorder traversal:\n";
+                Preorder_traverse(head);
+                break;
+            }
+            case 3 :{
+                cout<<"\nPostorder traversal:\n";
+                Postorder_traverse(head);
+                break;
+            }
+            case 4 :{
+                cout<<"\nInorder traversal:\n";
+                Inorder_traverse(head);
+                break;
+            }
+            default : {
+                cout<<"\nSomething is wrong. Please try again.";
+            }
+        }
+        choice = print();
+    }
+    cout<<"\nThanks for using. :)";
+    return 0;
+}
+
+struct node* insert_node(struct node* head, int data)
+{
+    if(head == NULL)
+    {
+        struct node* temp = (struct node*)new (struct node);
+        temp->data = data;
+        for(int i=0; i<M; ++i)
+            temp->next[i] = NULL;
+        return temp;
+    }
+    if(data < head->data) head->next[0] = insert_node(head->next[0], data);
+    if(data > head->data) head->next[M-1] = insert_node(head->next[M-1], data);
+    return head;
+}
+
+int print()
+{
+    cout<<"\n\n1. Insert a node.";
+    cout<<"\n2. Preorder traversal.";
+    cout<<"\n3. Postorder traversal.";
+    cout<<"\n4. Inorder traversal.";
+    cout<<"\n0. Exit.";
+    cout<<"\nEnter your choice: ";
+    int choice;
+    cin>>choice;
+    return choice;
+}
+
+void Preorder_traverse(struct node* head)
+{
+    if(head==NULL) return;
+    cout<<head->data<<" ";
+    for(int i=0; i<M; ++i)
+        Preorder_traverse(head->next[i]);
+}
+
+void Postorder_traverse(struct node* head)
+{
+    if(head==NULL) return;
+    for(int i=0; i<M; ++i)
+        Postorder_traverse(head->next[i]);
+    cout<<head->data<<" ";
+}
+
+void Inorder_traverse(struct node* head)
+{
+    if(head==NULL) return;
+    for(int i=0; i<M/2; ++i)
+        Inorder_traverse(head->next[i]);
+    cout<<head->data<<" ";
+    for(int i=M/2; i<M; ++i)
+        Inorder_traverse(head->next[i]);
+}
