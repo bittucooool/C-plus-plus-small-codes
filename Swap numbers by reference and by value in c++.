@@ -1,0 +1,86 @@
+/*
+https://www.facebook.com/bittu.kumar.750983
+Bittu Kumar
+IIT Indore , Computer Science
+Use it as you want, just leave my name here :)
+*/
+
+// Program to swap digits by reference and by value.
+
+#include<iostream>
+
+//std::ios_base::sync_with_stdio(false);
+using namespace std;
+
+void swap_by_reference(int* a, int* b);
+void swap_by_value(int a, int b);
+int print();
+
+int main()
+{
+    int choice;
+    choice = print();
+    while(choice)
+    {
+        switch (choice)
+        {
+        case 1 :
+            {
+                cout<<"\nEnter two digits: ";
+                int a,b;
+                cin>>a>>b;
+                swap_by_value(a, b);
+                cout<<"\nNumbers in Main function:   First: "<<a<<"    Second: "<<b;
+                break;
+            }
+        case 2 :
+            {
+                cout<<"\nEnter two digits: ";
+                int a,b;
+                cin>>a>>b;
+                swap_by_reference(&a, &b);
+                cout<<"\nNumbers in Main function:   First: "<<a<<"    Second: "<<b;
+                break;
+            }
+        default :
+            {
+                cout<<"\nSomething is wrong. Please try again.";
+            }
+        }
+        choice = print();
+    }
+    cout<<"\nThanks for using.";
+}
+
+int print()
+{
+    cout<<"\n\n1. Swap by value.";
+    cout<<"\n2. Swap by reference.";
+    cout<<"\n0. Exit.";
+    cout<<"\nEnter your choice: ";
+    int choice;
+    cin>>choice;
+    return choice;
+}
+
+void swap_by_reference(int* a, int* b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    cout<<"\nSwap by reference.";
+    cout<<"\nNumbers in function:   First: "<<*a<<"    Second: "<<*b;
+    return;
+}
+
+void swap_by_value(int a, int b)
+{
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    cout<<"\nSwap by value.";
+    cout<<"\nNumbers in function:   First: "<<a<<"    Second: "<<b;
+    return;
+}
