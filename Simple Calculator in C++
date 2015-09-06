@@ -1,0 +1,87 @@
+/*
+https://www.facebook.com/bittu.kumar.750983
+Bittu Kumar
+IIT Indore , Computer Science
+Use it as you want, just leave my name here :)
+*/
+
+// Program to implement simple Calculator.
+
+/*
+Sample input:
+1
+3 6
+2
+9 18
+3
+4 6
+4
+9 2
+4
+9 0
+5
+8
+-1
+0
+*/
+
+#include<iostream>
+
+//std::ios_base::sync_with_stdio(false);
+using namespace std;
+
+int print();     //Print the instructions.
+
+int main()
+{
+    int a, b, c = print();
+    while(c)
+    {
+        switch (c)
+        {
+            case 1 : {
+                cout<<"\nEnter two digits: ";
+                cin>>a>>b;
+                cout<<"\nSum : "<<a+b;
+                break;
+            }
+            case 2 : {
+                cout<<"\nEnter two digits: ";
+                cin>>a>>b;
+                cout<<"\nDifference : "<<a-b;
+                break;
+            }
+            case 3 : {
+                cout<<"\nEnter two digits: ";
+                cin>>a>>b;
+                cout<<"\nProduct : "<<a*b;
+                break;
+            }
+            case 4 : {
+                cout<<"\nEnter two digits: ";
+                cin>>a>>b;
+                if(b==0){cout<<"\nDivider cannot be 0."; break;}
+                cout<<"\nQuotient : "<<a/b<<"    Remainder : "<<a%b;
+                break;
+            }
+            default : {
+                cout<<"\nSomething is wrong , please try again.";
+            }
+        }
+        c = print();
+    }
+    cout<<"\n\nExiting.Thanks for using. :)";
+}
+
+int print()     //Print the instructions.
+{
+    cout<<"\n\n1. Add two numbers.";
+    cout<<"\n2. Subtract second number from first.";
+    cout<<"\n3. Multiply two numbers.";
+    cout<<"\n4. Divide first number by second.";
+    cout<<"\n0. Exit.";
+    cout<<"\nEnter your choice: ";
+    int c;
+    cin>>c;
+    return c;
+}
