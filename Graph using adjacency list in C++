@@ -1,0 +1,65 @@
+/*
+https://www.facebook.com/bittu.kumar.750983
+Bittu Kumar
+IIT Indore , Computer Science
+Use it as you want, just leave my name here :)
+*/
+
+// Program to implement graph using adjacency list.
+
+/*
+Sample input:
+4
+1 2 4 -1
+2 1 3 4 -1
+4 1 2 -1
+3 2 -1
+*/
+
+#include<iostream>
+#include<list>
+#include<vector>
+
+//std::ios_base::sync_with_stdio(false);
+using namespace std;
+
+void print(int , list<int> node[] );  //print function for graph
+
+int main()
+{
+    int t, temp;
+    cout<<"\nInsert the number of the nodes: ";
+    cin>>t;
+    list< int > node[t];
+    cout<<"\nInsert the value of the nodes and it's connections, and press -1 to end: ";
+    for(int i=0; i<t; ++i)
+    {
+        cout<<"\nEnter the "<<i<<"th node and it's edges: \n";
+        cin>>temp;  //Enter the i th node value
+        if(temp == -1) continue;
+        node[i].insert(node[i].begin(), temp);
+        while(1)        // Connections of i th node.
+        {
+            cin>>temp;
+            if(temp == -1) break;
+            node[i].insert(++node[i].begin(), temp);
+        }
+    }
+    cout<<"\nOkie dokie, all nodes are inserted.";
+    print(t, node);
+
+    return 0;
+}
+
+void print(int t, list<int> node[])  //Print Graph
+{
+    for(int i=0; i<t; ++i)
+    {
+        cout<<"\n";
+        for(list<int>::iterator it = node[i].begin(); it!=node[i].end(); ++it)
+        {
+            cout<<"->"<<*it;
+        }
+    }
+    cout<<"\n Was it all the nodes. :)";
+}
