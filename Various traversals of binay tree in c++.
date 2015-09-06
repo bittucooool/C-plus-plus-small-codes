@@ -8,12 +8,14 @@ Use it as you want, just leave my name here :)
 // Program to implement binary tree and it's various traversals.
 
 #include<iostream>
+#include<queue>
 
 //std::ios_base::sync_with_stdio(false);
 using namespace std;
 
 #define M 2  //For Binary tree
 //For M-nary tree change value of M, and insert_node function.
+queue<struct node *> q;
 
 struct node     //Basic structure to be used
 {
@@ -25,6 +27,7 @@ struct node* insert_node(struct node* head, int data);
 void Preorder_traverse(struct node* head);
 void Postorder_traverse(struct node* head);
 void Inorder_traverse(struct node* head);
+void Levelorder_traverse(struct node* head);
 int print();
 
 int main()
@@ -58,6 +61,11 @@ int main()
                 Inorder_traverse(head);
                 break;
             }
+            case 5 :{
+                cout<<"\nLevelorder traversal:\n";
+                Levelorder_traverse(head);
+                break;
+            }
             default : {
                 cout<<"\nSomething is wrong. Please try again.";
             }
@@ -89,6 +97,7 @@ int print()
     cout<<"\n2. Preorder traversal.";
     cout<<"\n3. Postorder traversal.";
     cout<<"\n4. Inorder traversal.";
+    cout<<"\n5. Levelorder traversal.";
     cout<<"\n0. Exit.";
     cout<<"\nEnter your choice: ";
     int choice;
@@ -120,4 +129,16 @@ void Inorder_traverse(struct node* head)
     cout<<head->data<<" ";
     for(int i=M/2; i<M; ++i)
         Inorder_traverse(head->next[i]);
+}
+
+void Levelorder_traverse(struct node* head)
+{
+    if(head==NULL) return;
+    cout<<head->data<<" ";
+    for(int i=0; i<M; ++i)
+        if(head->next[i]!=NULL)
+            q.push(head->next[i]);
+    if(q.size()==0) head = NULL;
+    else {head = q.front(); q.pop();}
+    Levelorder_traverse( head);
 }
