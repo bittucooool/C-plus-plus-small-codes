@@ -1,6 +1,5 @@
 
 <?php 
-echo("hello");
 function GetIP() 
 { 
 	if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
